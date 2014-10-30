@@ -42,7 +42,7 @@ public @interface ApiOperation {
      * A verbose description of the operation.
      */
     String notes() default "";
-    String example() default "";
+    String sample() default "";
 
     /**
      * The response type of the operation.

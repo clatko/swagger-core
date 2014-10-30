@@ -38,6 +38,7 @@ public @interface ApiParam {
      */
     String name() default "";
     String trueType() default "";
+    String sample() default "";
 
     /**
      * A brief description of the parameter.

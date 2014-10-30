@@ -92,7 +92,7 @@ case class Operation (
   method: String,
   summary: String,
   notes: String,
-  example: String,
+  sample: String,
   responseClass: String,
   nickname: String,
   position: Int,
@@ -114,6 +114,7 @@ case class Parameter (
   allowableValues: AllowableValues = AnyAllowableValues,
   paramType: String,
   trueType: String,
+  sample: String,
   paramAccess: Option[String] = None)
 
 case class ResponseMessage (

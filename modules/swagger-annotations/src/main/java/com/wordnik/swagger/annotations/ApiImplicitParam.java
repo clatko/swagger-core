@@ -108,4 +108,5 @@ public @interface ApiImplicitParam {
      */
     String paramType() default "";
     String trueType() default "";
+    String sample() default "";
 }

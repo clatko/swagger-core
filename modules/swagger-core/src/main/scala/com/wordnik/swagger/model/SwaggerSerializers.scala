@@ -191,7 +191,7 @@ object SwaggerSerializers extends Serializers {
         }),
         (json \ "summary").extract[String],
         (json \ "notes").extractOrElse(""),
-        (json \ "example").extract[String],
+        (json \ "sample").extract[String],
         (json \ "responseClass").extractOrElse({
           !!(json, OPERATION, "responseClass", "missing required field", ERROR)
           ""
@@ -218,7 +218,7 @@ object SwaggerSerializers extends Serializers {
       ("method" -> x.method) ~
       ("summary" -> x.summary) ~
       ("notes" -> x.notes) ~
-      ("example" -> x.example) ~
+      ("sample" -> x.sample) ~
       output ~
       ("nickname" -> x.nickname) ~
       ("produces" -> {
@@ -390,6 +390,7 @@ object SwaggerSerializers extends Serializers {
           ""
         }),
         (json \ "trueType").extract[String],
+        (json \ "sample").extract[String],
         (json \ "paramAccess").extractOpt[String]
       )
     }, {
@@ -403,6 +404,7 @@ object SwaggerSerializers extends Serializers {
       toJsonSchema("type", x.dataType) ~
       ("paramType" -> x.paramType) ~
       ("trueType" -> x.trueType) ~
+      ("sample" -> x.sample) ~
       ("allowMultiple" -> x.allowMultiple) ~
       ("paramAccess" -> x.paramAccess)
 
@@ -713,7 +715,7 @@ trait Serializers {
         }),
         (json \ "summary").extract[String],
         (json \ "notes").extractOrElse(""),
-        (json \ "example").extract[String],
+        (json \ "sample").extract[String],
         (json \ "responseClass").extractOrElse({
           !!(json, OPERATION, "responseClass", "missing required field", ERROR)
           ""
@@ -737,7 +739,7 @@ trait Serializers {
       ("method" -> x.method) ~
       ("summary" -> x.summary) ~
       ("notes" -> x.notes) ~
-      ("example" -> x.example) ~
+      ("sample" -> x.sample) ~
       ("responseClass" -> x.responseClass) ~
       ("nickname" -> x.nickname) ~
       ("produces" -> {
@@ -814,6 +816,7 @@ trait Serializers {
           ""
         }),
         (json \ "trueType").extract[String],
+        (json \ "sample").extract[String],
         (json \ "paramAccess").extractOpt[String]
       )
     }, {
@@ -835,6 +838,7 @@ trait Serializers {
       }) ~
       ("paramType" -> x.paramType) ~
       ("trueType" -> x.trueType) ~
+      ("sample" -> x.sample) ~
       ("paramAccess" -> x.paramAccess)
     }
   ))
