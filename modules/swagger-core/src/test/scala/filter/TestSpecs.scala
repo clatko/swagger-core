@@ -18,8 +18,8 @@ object TestSpecs {
   def ordered = {
     val apis = List(
       ApiDescription("/", None, List(
-        Operation("GET", "does something", "notes", "void", "getSomething", 2),
-        Operation("POST", "does something else", "notes", "void", "postSomething", 1)
+        Operation("GET", "does something", "notes", "example", "void", "getSomething", 2),
+        Operation("POST", "does something else", "notes", "example", "void", "postSomething", 1)
         )
       )
     )
@@ -35,7 +35,7 @@ object TestSpecs {
   def subTypes = {
     val apis = List(
       ApiDescription("/", None, List(
-        Operation("GET", "does something", "notes", "Animal", "getSomething", 2))
+        Operation("GET", "does something", "notes", "example", "Animal", "getSomething", 2))
       )
     )
     val models = Some(ModelConverters.readAll(classOf[Animal]).map(m => m.name -> m).toMap)

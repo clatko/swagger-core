@@ -107,4 +107,5 @@ public @interface ApiImplicitParam {
      * Valid values are {@code path}, {@code query}, {@code body}, {@code header} or {@code form}.
      */
     String paramType() default "";
+    String trueType() default "";
 }

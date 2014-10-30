@@ -33,6 +33,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 public @interface Api {
+    String apiVersion() default "";
+
     /**
      * The 'path' that is going to be used to host the API Declaration of the
      * resource.
@@ -116,4 +118,5 @@ public @interface Api {
      * @since 1.3.8
      */
     boolean hidden() default false;
+
 }

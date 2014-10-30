@@ -191,6 +191,7 @@ object SwaggerSerializers extends Serializers {
         }),
         (json \ "summary").extract[String],
         (json \ "notes").extractOrElse(""),
+        (json \ "example").extract[String],
         (json \ "responseClass").extractOrElse({
           !!(json, OPERATION, "responseClass", "missing required field", ERROR)
           ""
@@ -217,6 +218,7 @@ object SwaggerSerializers extends Serializers {
       ("method" -> x.method) ~
       ("summary" -> x.summary) ~
       ("notes" -> x.notes) ~
+      ("example" -> x.example) ~
       output ~
       ("nickname" -> x.nickname) ~
       ("produces" -> {
@@ -387,6 +389,7 @@ object SwaggerSerializers extends Serializers {
           !!(json, OPERATION_PARAM, "type", "missing required field", ERROR)
           ""
         }),
+        (json \ "trueType").extract[String],
         (json \ "paramAccess").extractOpt[String]
       )
     }, {
@@ -399,6 +402,7 @@ object SwaggerSerializers extends Serializers {
       ("required" -> x.required) ~
       toJsonSchema("type", x.dataType) ~
       ("paramType" -> x.paramType) ~
+      ("trueType" -> x.trueType) ~
       ("allowMultiple" -> x.allowMultiple) ~
       ("paramAccess" -> x.paramAccess)
 
@@ -472,7 +476,8 @@ trait Serializers {
         (json \ "protocols").extractOrElse(List()),
         authorizations,
         (json \ "apis").extract[List[ApiDescription]],
-        (json \ "models").extractOpt[Map[String, Model]]
+        (json \ "models").extractOpt[Map[String, Model]],
+        (json \ "description").extractOpt[String]
       )
     }, {
       case x: ApiListing =>
@@ -521,7 +526,8 @@ trait Serializers {
           case Some(e: Map[String, Model]) if (e.size > 0) => Extraction.decompose(e)
           case _ => JNothing
         }
-      })
+      }) ~
+      ("description" -> x.description)
     }
   ))
 
@@ -707,6 +713,7 @@ trait Serializers {
         }),
         (json \ "summary").extract[String],
         (json \ "notes").extractOrElse(""),
+        (json \ "example").extract[String],
         (json \ "responseClass").extractOrElse({
           !!(json, OPERATION, "responseClass", "missing required field", ERROR)
           ""
@@ -730,6 +737,7 @@ trait Serializers {
       ("method" -> x.method) ~
       ("summary" -> x.summary) ~
       ("notes" -> x.notes) ~
+      ("example" -> x.example) ~
       ("responseClass" -> x.responseClass) ~
       ("nickname" -> x.nickname) ~
       ("produces" -> {
@@ -805,6 +813,7 @@ trait Serializers {
           !!(json, OPERATION_PARAM, "paramType", "missing required field", ERROR)
           ""
         }),
+        (json \ "trueType").extract[String],
         (json \ "paramAccess").extractOpt[String]
       )
     }, {
@@ -825,6 +834,7 @@ trait Serializers {
         }
       }) ~
       ("paramType" -> x.paramType) ~
+      ("trueType" -> x.trueType) ~
       ("paramAccess" -> x.paramAccess)
     }
   ))

@@ -37,6 +37,7 @@ public @interface ApiParam {
      * as the path section they represent.
      */
     String name() default "";
+    String trueType() default "";
 
     /**
      * A brief description of the parameter.
