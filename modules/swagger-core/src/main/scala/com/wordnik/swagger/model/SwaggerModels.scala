@@ -85,6 +85,7 @@ case class ApiListing (
 case class ApiDescription (
   path: String,
   description: Option[String],
+  position: Int = 0,
   operations: List[Operation] = List(),
   hidden: Boolean = false)
 

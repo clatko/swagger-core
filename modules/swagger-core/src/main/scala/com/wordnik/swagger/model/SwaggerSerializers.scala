@@ -613,6 +613,7 @@ trait Serializers {
           ""
         }),
         (json \ "description").extractOpt[String],
+        (json \ "position").extract[Int],
         (json \ "operations").extract[List[Operation]]
       )
     }, {
@@ -620,6 +621,7 @@ trait Serializers {
       implicit val fmts = formats
       ("path" -> x.path) ~
       ("description" -> x.description) ~
+      ("position" -> x.position) ~
       ("operations" -> {
         x.operations match {
           case e:List[Operation] if(e.size > 0) => Extraction.decompose(e)

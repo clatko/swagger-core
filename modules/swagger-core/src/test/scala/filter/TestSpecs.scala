@@ -17,7 +17,7 @@ object TestSpecs {
 
   def ordered = {
     val apis = List(
-      ApiDescription("/", None, List(
+      ApiDescription("/", None, 1, List(
         Operation("GET", "does something", "notes", List(), "void", "getSomething", 2),
         Operation("POST", "does something else", "notes", List(), "void", "postSomething", 1)
         )
@@ -34,7 +34,7 @@ object TestSpecs {
 
   def subTypes = {
     val apis = List(
-      ApiDescription("/", None, List(
+      ApiDescription("/", None, 1, List(
         Operation("GET", "does something", "notes", List(), "Animal", "getSomething", 2))
       )
     )
