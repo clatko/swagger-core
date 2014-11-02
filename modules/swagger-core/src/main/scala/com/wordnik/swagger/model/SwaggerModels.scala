@@ -92,7 +92,7 @@ case class Operation (
   method: String,
   summary: String,
   notes: String,
-  sample: String,
+  samples: List[Sample] = List.empty,
   responseClass: String,
   nickname: String,
   position: Int,
@@ -103,6 +103,10 @@ case class Operation (
   parameters: List[Parameter] = List.empty,
   responseMessages: List[ResponseMessage] = List.empty,
   `deprecated`: Option[String] = None)
+
+case class Sample (
+    value: String,
+    language: String)
 
 case class Parameter (
   name: String,

@@ -191,7 +191,7 @@ object SwaggerSerializers extends Serializers {
         }),
         (json \ "summary").extract[String],
         (json \ "notes").extractOrElse(""),
-        (json \ "sample").extract[String],
+        (json \ "samples").extract[List[Sample]],
         (json \ "responseClass").extractOrElse({
           !!(json, OPERATION, "responseClass", "missing required field", ERROR)
           ""
@@ -218,7 +218,7 @@ object SwaggerSerializers extends Serializers {
       ("method" -> x.method) ~
       ("summary" -> x.summary) ~
       ("notes" -> x.notes) ~
-      ("sample" -> x.sample) ~
+      ("samples" -> Extraction.decompose(x.samples)) ~
       output ~
       ("nickname" -> x.nickname) ~
       ("produces" -> {
@@ -715,7 +715,7 @@ trait Serializers {
         }),
         (json \ "summary").extract[String],
         (json \ "notes").extractOrElse(""),
-        (json \ "sample").extract[String],
+        (json \ "samples").extract[List[Sample]],
         (json \ "responseClass").extractOrElse({
           !!(json, OPERATION, "responseClass", "missing required field", ERROR)
           ""
@@ -739,7 +739,7 @@ trait Serializers {
       ("method" -> x.method) ~
       ("summary" -> x.summary) ~
       ("notes" -> x.notes) ~
-      ("sample" -> x.sample) ~
+      ("samples" -> Extraction.decompose(x.samples)) ~
       ("responseClass" -> x.responseClass) ~
       ("nickname" -> x.nickname) ~
       ("produces" -> {
@@ -781,6 +781,21 @@ trait Serializers {
         }
       }) ~
       ("deprecated" -> x.`deprecated`)
+    }
+  ))
+
+    class SampleSerializer extends CustomSerializer[Sample](formats => ({
+    case json =>
+      implicit val fmts: Formats = formats
+      Sample(
+        (json \ "value").extract[String],
+        (json \ "language").extract[String]
+      )
+    }, {
+      case x: Sample =>
+      implicit val fmts = formats
+      ("value" -> x.value) ~
+      ("language" -> x.language)
     }
   ))
 
