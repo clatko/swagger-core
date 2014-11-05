@@ -326,6 +326,7 @@ object SwaggerSerializers extends Serializers {
       implicit val fmts = formats
       val output = toJsonSchemaType(x) ~      
       ("description" -> x.description) ~
+      ("position" -> x.position) ~
       ("items" -> Extraction.decompose(x.items))
 
       x.allowableValues match {
@@ -938,6 +939,7 @@ trait Serializers {
       implicit val fmts = formats
       ("type" -> x.`type`) ~
       ("required" -> x.required) ~
+      ("position" -> x.position) ~
       ("description" -> x.description) ~
       ("allowableValues" -> {
         x.allowableValues match {
