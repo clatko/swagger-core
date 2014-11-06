@@ -61,7 +61,8 @@ case class ModelProperty(
   required: Boolean = false,
   description: Option[String] = None,
   allowableValues: AllowableValues = AnyAllowableValues,
-  items: Option[ModelRef] = None)
+  items: Option[ModelRef] = None,
+  hidden: Boolean = false)
 
 case class ModelRef(
   `type`: String,

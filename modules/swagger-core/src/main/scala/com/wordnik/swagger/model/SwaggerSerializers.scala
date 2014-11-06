@@ -319,7 +319,8 @@ object SwaggerSerializers extends Serializers {
             case Some(e: ModelRef) if(e.`type` != null || e.ref != None) => Some(e)
             case _ => None
           }
-        }
+        },
+        hidden = false
       )
     }, {
     case x: ModelProperty =>
@@ -932,7 +933,8 @@ trait Serializers {
             case Some(e: ModelRef) if(e.`type` != null || e.ref != None) => Some(e)
             case _ => None
           }
-        }
+        },
+        hidden = false
       )
     }, {
     case x: ModelProperty =>
