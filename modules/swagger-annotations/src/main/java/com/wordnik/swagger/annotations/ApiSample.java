@@ -25,5 +25,7 @@ public @interface ApiSample {
 
     String value() default "";
 
+    String path() default "";
+
     String language() default "";
 }

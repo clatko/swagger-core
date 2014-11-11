@@ -793,12 +793,14 @@ trait Serializers {
       implicit val fmts: Formats = formats
       Sample(
         (json \ "value").extract[String],
+        (json \ "path").extract[String],
         (json \ "language").extract[String]
       )
     }, {
       case x: Sample =>
       implicit val fmts = formats
       ("value" -> x.value) ~
+      ("path" -> x.path) ~
       ("language" -> x.language)
     }
   ))

@@ -108,6 +108,7 @@ case class Operation (
 
 case class Sample (
     value: String,
+    path: String,
     language: String)
 
 case class Parameter (
