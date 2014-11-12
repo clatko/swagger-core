@@ -614,6 +614,7 @@ trait Serializers {
           !!(json, RESOURCE_LISTING, "path", "missing required field", ERROR)
           ""
         }),
+        (json \ "sample").extract[String],
         (json \ "description").extractOpt[String],
         (json \ "position").extract[Int],
         (json \ "operations").extract[List[Operation]]
@@ -622,6 +623,7 @@ trait Serializers {
       case x: ApiDescription =>
       implicit val fmts = formats
       ("path" -> x.path) ~
+      ("sample" -> x.sample) ~
       ("description" -> x.description) ~
       ("position" -> x.position) ~
       ("operations" -> {
