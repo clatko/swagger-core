@@ -48,6 +48,7 @@ public @interface Api {
      * If the value isn't preceded with a slash, one would be added to it.
      */
     String value();
+    String title();
 
     /**
      * Corresponds to the `description` field of the Resource Listing API operation.

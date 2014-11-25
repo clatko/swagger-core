@@ -592,6 +592,7 @@ trait Serializers {
     case json =>
       implicit val fmts: Formats = formats
       ApiListingReference(
+        (json \ "title").extract[String],
         (json \ "path").extractOrElse({
           !!(json, RESOURCE, "path", "missing required field", ERROR)
           ""
@@ -601,6 +602,7 @@ trait Serializers {
     }, {
       case x: ApiListingReference =>
       implicit val fmts = formats
+      ("title" -> x.title) ~
       ("path" -> x.path) ~
       ("description" -> x.description)
     }

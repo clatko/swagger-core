@@ -37,7 +37,11 @@ case class LoginEndpoint(url: String)
 case class TokenRequestEndpoint(url: String, clientIdName: String, clientSecretName: String)
 case class TokenEndpoint(url: String, tokenName: String)
 
-case class ApiListingReference(path:String, description: Option[String], position: Int = 0)
+case class ApiListingReference(
+    title: String,
+    path: String,
+    description: Option[String],
+    position: Int = 0)
 
 trait AllowableValues
 case object AnyAllowableValues extends AllowableValues
